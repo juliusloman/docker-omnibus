@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='/opt/IBM/IBMIMShared'/>
+  </variables>
+  <server>
+    <repository location='/tmp/install/core/OMNIbusRepository'/>
+    <repository location='/tmp/install/fp3/OMNIbusRepository/5.50.35.delta.core'/>
+  </server>
+  <profile id='IBM Tivoli Netcool OMNIbus' installLocation='/opt/IBM/tivoli/netcool'>
+    <data key='eclipseLocation' value='/opt/IBM/tivoli/netcool'/>
+    <data key='user.import.profile' value='false'/>
+    <data key='cic.selector.os' value='linux'/>
+    <data key='cic.selector.arch' value='x86_64'/>
+    <data key='cic.selector.ws' value='gtk'/>
+    <data key='cic.selector.nl' value='en'/>
+    <data key='user.dirUserData,com.ibm.tivoli.omnibus.core' value=''/>
+    <data key='user.migratedata,com.ibm.tivoli.omnibus.core' value='false'/>
+  </profile>
+  <install modify='false'>
+    <!-- IBM Tivoli Netcool/OMNIbus 8.1.0.3 -->
+    <offering profile='IBM Tivoli Netcool OMNIbus' id='com.ibm.tivoli.omnibus.core' version='5.50.35.20150408_2132' features='nco_core_feature,nco_admin_gui_feature,nco_admin_tools_feature,nco_tec_migration,nco_operator_gui_feature,nco_objserv_feature,nco_g_objserv_feature,nco_bridgeserv_feature,nco_proxyserv_feature,nco_pa_feature,nco_probes_support_feature,nco_gateways_support_feature,nco_mib_manager_feature,nco_extensions_feature' installFixes='none'/>
+  </install>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+  <preference name='com.ibm.cic.common.core.preferences.connectTimeout' value='30'/>
+  <preference name='com.ibm.cic.common.core.preferences.readTimeout' value='45'/>
+  <preference name='com.ibm.cic.common.core.preferences.downloadAutoRetryCount' value='0'/>
+  <preference name='offering.service.repositories.areUsed' value='true'/>
+  <preference name='com.ibm.cic.common.core.preferences.ssl.nonsecureMode' value='false'/>
+  <preference name='com.ibm.cic.common.core.preferences.http.disablePreemptiveAuthentication' value='false'/>
+  <preference name='http.ntlm.auth.kind' value='NTLM'/>
+  <preference name='http.ntlm.auth.enableIntegrated.win32' value='true'/>
+  <preference name='com.ibm.cic.common.core.preferences.preserveDownloadedArtifacts' value='true'/>
+  <preference name='com.ibm.cic.common.core.preferences.keepFetchedFiles' value='false'/>
+  <preference name='PassportAdvantageIsEnabled' value='false'/>
+  <preference name='com.ibm.cic.common.core.preferences.searchForUpdates' value='false'/>
+  <preference name='com.ibm.cic.agent.ui.displayInternalVersion' value='false'/>
+  <preference name='com.ibm.cic.common.sharedUI.showErrorLog' value='true'/>
+  <preference name='com.ibm.cic.common.sharedUI.showWarningLog' value='true'/>
+  <preference name='com.ibm.cic.common.sharedUI.showNoteLog' value='true'/>
+</agent-input>
