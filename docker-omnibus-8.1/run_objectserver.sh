@@ -1,12 +1,11 @@
 #!/bin/sh
 
-[ -z "$OBJSRV" ] && OBJSRV="NCOMS"
-[ -z "$OBJSRVPORT" ] && OBJSRVPORT=4100
-[ -z "$NCHOME" ] && NCHOME="/opt/IBM/tivoli/netcool"
-[ -z "$OMNIHOME" ] && NCHOME="/opt/IBM/tivoli/netcool/omnibus"
+echo -e "[$OBJSRV]\n{\n\tPrimary: $HOSTNAME $OBJSRV_PORT\n}\n$OMNIDAT_EXTRA" >$NCHOME/etc/omni.dat
 
-echo -e "[$OBJSRV]\n{\n\tPrimary: $HOSTNAME $OBJSRVPORT\n}" >$NCHOME/etc/omni.dat
-
-$NCHOME/bin/nco_igen &&
-$OMNIHOME/bin/nco_dbinit -server $OBJSRV -force &&
-$OMNIHOME/bin/nco_objserv -name $OBJSRV
+$NCHOME/bin/nco_igen
+if [ ! -e "/db/.initialized" ];
+then
+	setarch $(arch) --uname-2.6 $OMNIHOME/bin/nco_dbinit -server $OBJSRV -memstoredatadirectory /db "$DBINIT_EXTRA"
+	touch /db/.initialized
+fi
+setarch $(arch) --uname-2.6 $OMNIHOME/bin/nco_objserv -name $OBJSRV "$OBJSRV_EXTRA"

@@ -1,10 +1,7 @@
 FROM centos:7
 MAINTAINER Julius Loman <lomo@kyberia.net>
 
-ENV NCHOME  "/opt/IBM/tivoli/netcool"
-ENV OMNIHOME  "/opt/IBM/tivoli/netcool/omnibus"
-ENV OBJSRV  "NCOMS"
-ENV OBJSRVPORT 4100
+ENV INSTALLHOST="http://netcool.install:8000" NCHOME="/opt/IBM/tivoli/netcool" OMNIHOME="/opt/IBM/tivoli/netcool/omnibus" OBJSRV="NCOMS" OBJSRV_PORT=4100 
 
 # Add dependencies
 RUN yum --setopt=tsflags=nodocs -y install \
@@ -52,21 +49,29 @@ RUN yum --setopt=tsflags=nodocs -y install \
     rm -rf /var/cache/yum/* && \
     yum clean all
 
-# Add installation media
-COPY 8.1.0-TIV-OMNIbusCore-linux-x86_64-FP0003.zip /tmp/install/
-COPY agent.installer.linux.gtk.x86_64_1.8.1000.20141126_2002.zip /tmp/install/
-COPY OMNIbus-v8.1-Core.linux64.zip /tmp/install/
-COPY omnibus-response.xml /tmp/install/
-COPY run_objectserver.sh /usr/local/bin/
 
-RUN mkdir -p /tmp/install/core && unzip -d /tmp/install/core/ /tmp/install/OMNIbus-v8.1-Core.linux64.zip && \
-    mkdir -p /tmp/install/fp3 && unzip -d /tmp/install/fp3/ /tmp/install/8.1.0-TIV-OMNIbusCore-linux-x86_64-FP0003.zip && \
-    mkdir -p /tmp/install/im && unzip -d /tmp/install/im/ /tmp/install/agent.installer.linux.gtk.x86_64_1.8.1000.20141126_2002.zip && \ 
-    /tmp/install/im/installc --launcher.ini /tmp/install/im/silent-install.ini  -acceptLicense && \
-    /opt/IBM/InstallationManager/eclipse/IBMIM -acceptLicense -ShowVerboseProgress -silent -nosplash -input /tmp/install/omnibus-response.xml && \
-    chmod +x /usr/local/bin/run_objectserver.sh && \ 
+# Add installation media
+COPY run_objectserver.sh omnibus-response.xml /tmp/install/scripts/
+
+# Add dedicated user
+RUN mkdir -p $NCHOME /tmp/install/core /tmp/install/fp3 /tmp/install/im && \
+    useradd -c "Netcool user" netcool && mkdir -p /db /tmp/install && chown -R netcool:netcool /db /tmp/install $NCHOME && \
+    mv /tmp/install/scripts/run_objectserver.sh /
+
+USER netcool
+
+# Perform installation
+RUN cd /tmp/install && \
+    curl -O $INSTALLHOST/OMNIbus-v8.1-Core.linux64.zip &&  unzip -q -d /tmp/install/core OMNIbus-v8.1-Core.linux64.zip && \
+    curl -O $INSTALLHOST/8.1.0-TIV-OMNIbusCore-linux-x86_64-FP0004.zip && unzip -q -d /tmp/install/fp3 8.1.0-TIV-OMNIbusCore-linux-x86_64-FP0004.zip && \
+    curl -O $INSTALLHOST/agent.installer.linux.gtk.x86_64_1.8.3000.20150606_0047.zip && unzip -q -d /tmp/install/im agent.installer.linux.gtk.x86_64_1.8.3000.20150606_0047.zip && \
+    /tmp/install/im/userinstc --launcher.ini /tmp/install/im/user-silent-install.ini  -acceptLicense && \
+    /home/netcool/IBM/InstallationManager/eclipse/IBMIM -acceptLicense -ShowVerboseProgress -silent -nosplash -input /tmp/install/scripts/omnibus-response.xml && \
+    chmod +x /run_objectserver.sh && \ 
+# Optially remove Installation Manager stuff to lower image footprint
+#   rm -rf /home/netcool/var /home/netcool/IBM && \
     rm -rf /tmp/install
 
-EXPOSE 4100
+EXPOSE $OBJSRV_PORT
 
-CMD /usr/local/bin/run_objectserver.sh
+CMD /run_objectserver.sh
