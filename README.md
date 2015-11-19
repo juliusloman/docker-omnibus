@@ -10,6 +10,9 @@ Optionally you can remove installation manager stuff (directories and install da
 
 ## Running
 
+You can start the stack using docker-compose and provided docker-compose.yml file. This starts up single Object Server named AGG and a WebGUI instance.
+
+### Object Server
 Objectserver runs as dedicated user netcool and contains a single volume /db for database. Database initialization is called on container startup only.
 
 Container can be configured by following environment variables
@@ -17,3 +20,22 @@ Container can be configured by following environment variables
   * DBINIT\_EXTRA - extra arguments passwd to nco\_dbinit
   * OBJSRV\_EXTRA - extra arguments passed to nco\_objserv
   * OMNIDAT\_EXTRA - extra content inserted to omni.dat
+
+### WebGUI
+
+WebGUI can be configured using following environment variables, that will be modified in *ncwDataSourceDefinitions.xml* configuration file
+
+  * OBJECTSERVER\_PRIMARY\_HOST 
+  * OBJECTSERVER\_PRIMARY\_NAME 
+  * OBJECTSERVER\_USER 
+  * OBJECTSERVER\_PASSWORD 
+  * OBJECTSERVER\_ENCRYPTED 
+  * OBJECTSERVER\_ALGORITHM\_ATTRIBUTE 
+  * OBJECTSERVER\_SSL 
+  * OBJECTSERVER\_PRIMARY\_PORT 
+  * OBJECTSERVER\_SECONDARY\_HOST 
+  * OBJECTSERVER\_FAILOVER 
+  * OBJECTSERVER\_SECONDARY\_PORT
+
+
+

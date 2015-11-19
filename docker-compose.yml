@@ -1,0 +1,20 @@
+omnibus:
+    build: docker-omnibus-8.1
+    ports: 
+    - 4100:4100
+    environment:
+    - OBJSRV=AGG
+
+webgui:
+    build: docker-webgui-8.1
+    ports:
+    - 16311:16311
+    links:
+    - omnibus:agg
+    environment:
+    - OBJECTSERVER_PRIMARY_HOST=agg
+    - OBJECTSERVER_PRIMARY_PORT=4100
+    - OBJECTSERVER_PRIMARY_NAME=AGG
+    - OBJECTSERVER_USER=root
+    - OBJECTSERVER_PASSWORD=
+

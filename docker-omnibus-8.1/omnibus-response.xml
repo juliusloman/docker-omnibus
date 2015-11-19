@@ -5,7 +5,7 @@
   </variables>
   <server>
     <repository location='/tmp/install/core/OMNIbusRepository'/>
-    <repository location='/tmp/install/fp3/OMNIbusRepository/5.50.42.delta.core'/>
+    <repository location='/tmp/install/fp/OMNIbusRepository/5.50.42.delta.core'/>
   </server>
   <profile id='IBM Tivoli Netcool OMNIbus' installLocation='/opt/IBM/tivoli/netcool'>
     <data key='eclipseLocation' value='/opt/IBM/tivoli/netcool'/>

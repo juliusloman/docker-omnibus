@@ -11,5 +11,5 @@ do
    sed -i"" -e "s/@CONFIGURATION_TOKEN_$VAR@/${!VAR}/g" /opt/IBM/netcool/omnibus_webgui/etc/datasources/ncwDataSourceDefinitions.xml
 done
 
-[ ! -f /usr/local/bin/startJazz.sh ] && /opt/IBM/JazzSM/profile/bin/startServer.sh server1 -script /usr/local/bin/startJazz.sh
-exec /usr/local/bin/startJazz.sh
+[ ! -f /opt/IBM/JazzSM/profile/bin/startJazz.sh ] && /opt/IBM/JazzSM/profile/bin/startServer.sh server1 -script /opt/IBM/JazzSM/profile/bin/startJazz.sh
+exec /opt/IBM/JazzSM/profile/bin/startJazz.sh
