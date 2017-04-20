@@ -1,25 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <agent-input>
   <variables>
-    <variable name='sharedLocation' value='/opt/IBM/IMShared'/>
+    <variable name='sharedLocation' value='/opt/IBM/IBMIMShared'/>
   </variables>
   <server>
-    <repository location='/tmp/install/was/WASRepository/disk1'/>
-    <repository location='/tmp/install/jazz/JazzSMRepository/disk1'/>
-    <repository location='/tmp/install/jazz/im.linux.x86_64'/>
-    <repository location='/tmp/install/webgui/OMNIbusWebGUIRepository'/>
-    <repository location='/tmp/install/webgui-fp/OMNIbusWebGUIRepository/delta'/>
+    <repository location='/tmp/install/itnm-fp/repositories/disk1'/>
+    <repository location='/tmp/install/itnm/repositories/disk1'/>
     <repository location='/tmp/install/webgui-fp/OMNIbusWebGUI_NOIExtensionsRepository/delta'/>
+    <repository location='/tmp/install/webgui-fp/OMNIbusWebGUIRepository/delta'/>
+    <repository location='/tmp/install/webgui/OMNIbusWebGUIRepository'/>
+    <repository location='/tmp/install/jazz/im.linux.x86_64'/>
+    <repository location='/tmp/install/jazz/JazzSMRepository/disk1'/>
+    <repository location='/tmp/install/was/WASRepository/disk1'/>
   </server>
   <profile id='IBM WebSphere Application Server V8.5' installLocation='/opt/IBM/WebSphere/AppServer'>
     <data key='cic.selector.arch' value='x86'/>
   </profile>
   <install>
-    <!-- IBM WebSphere Application Server -->
     <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.BASE.v85' features='core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit'/>
-    <!-- IBM WebSphere SDK Java Technology Edition (Optional) -->
     <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v70' features='com.ibm.sdk.7'/>
-    <!-- Jazz for Service Management extension for IBM WebSphere 8.5 -->
     <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.tivoli.tacct.psc.install.was85.extension' features='main.feature'/>
   </install>
   <profile id='Core services in Jazz for Service Management' installLocation='/opt/IBM/JazzSM'>
@@ -50,19 +49,41 @@
     <data key='user.WAS_CELL' value='JazzSMNode01Cell'/>
   </profile>
   <install>
-    <!-- IBM Dashboard Application Services Hub -->
     <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.tip.install' features='com.ibm.tivoli.tacct.psc.install.server.feature.tip.install,com.ibm.tivoli.tacct.psc.install.server.feature.tip.config'/>
   </install>
   <profile id='IBM Netcool GUI Components' installLocation='/opt/IBM/netcool/gui'>
     <data key='cic.selector.arch' value='x86_64'/>
+    <data key='user.org.apache.ant.classpath' value='/tmp/install/jazz/im.linux.x86_64/plugins/org.apache.ant_1.8.3.v201301120609/lib/ant.jar'/>
+    <data key='user.org.apache.ant.launcher.classpath' value='/tmp/install/jazz/im.linux.x86_64/plugins/org.apache.ant_1.8.3.v201301120609/lib/ant-launcher.jar'/>
+    <data key='user.JAZZSM_HOME,com.ibm.tivoli.netcool.itnm.gui' value='/opt/IBM/JazzSM'/>
+    <data key='user.WAS_SERVER_NAME,com.ibm.tivoli.netcool.itnm.gui' value='server1'/>
+    <data key='user.WAS_USER_NAME,com.ibm.tivoli.netcool.itnm.gui' value='smadmin'/>
+    <data key='user.WAS_PASSWORD,com.ibm.tivoli.netcool.itnm.gui' value='smadmin'/>
+    <data key='user.WAS_PROFILE_PATH,com.ibm.tivoli.netcool.itnm.gui' value='/opt/IBM/JazzSM/profile'/>
+    <data key='user.itnm.ObjectServerUsername,com.ibm.tivoli.netcool.itnm.gui' value='root'/>
+    <data key='user.itnm.ObjectServerItnmUserPassword.confirm,com.ibm.tivoli.netcool.itnm.gui' value='root'/>
+    <data key='user.itnm.ObjectServerItnmUserPassword,com.ibm.tivoli.netcool.itnm.gui' value='root'/>
+    <data key='user.itnm.ObjectServer.skip.validation,com.ibm.tivoli.netcool.itnm.gui' value='true'/>
+    <data key='user.itnm.ObjectServerHostname,com.ibm.tivoli.netcool.itnm.gui' value='omnihost'/>
+    <data key='user.itnm.ObjectServerName,com.ibm.tivoli.netcool.itnm.gui' value='NCOMS'/>
+    <data key='user.itnm.ObjectServer.create.instance,com.ibm.tivoli.netcool.itnm.gui' value='false'/>
+    <data key='user.itnm.ObjectServerMainPort,com.ibm.tivoli.netcool.itnm.gui' value='4100'/>
+    <data key='user.itnm.database.server.type,com.ibm.tivoli.netcool.itnm.gui' value='db2'/>
+    <data key='user.itnm.database.skip.validation,com.ibm.tivoli.netcool.itnm.gui' value='true'/>
+    <data key='user.itnm.database.name,com.ibm.tivoli.netcool.itnm.gui' value='NCIM'/>
+    <data key='user.itnm.database.hostname,com.ibm.tivoli.netcool.itnm.gui' value='localhost'/>
+    <data key='user.itnm.database.username,com.ibm.tivoli.netcool.itnm.gui' value='itnmdbuser'/>
+    <data key='user.itnm.database.password,com.ibm.tivoli.netcool.itnm.gui' value='itnmdbuser'/>
+    <data key='user.itnm.database.create.tables,com.ibm.tivoli.netcool.itnm.gui' value='false'/>
+    <data key='user.itnm.database.port,com.ibm.tivoli.netcool.itnm.gui' value='50000'/>
     <data key='user.DashHomeDir' value='/opt/IBM/JazzSM/ui'/>
     <data key='user.WasHomeDir' value='/opt/IBM/WebSphere/AppServer'/>
     <data key='user.DashHomeUserID' value='smadmin'/>
+    <data key='user.DashHomePwd' value='smadmin'/>
     <data key='user.DashHomeContextRoot' value='/ibm/console'/>
     <data key='user.DashHomeWasCell' value='JazzSMNode01Cell'/>
     <data key='user.DashHomeWasNode' value='JazzSMNode01'/>
     <data key='user.DashHomeWasServerName' value='server1'/>
-    <data key='user.DashHomePwd' value='smadmin'/>
     <data key='user.SaasEnabled' value='false'/>
     <data key='user.Url,com.ibm.tivoli.netcool.omnibus.webgui' value='https://localhost:9987/Unity'/>
     <data key='user.UrlProtocol,com.ibm.tivoli.netcool.omnibus.webgui' value='https'/>
@@ -75,8 +96,8 @@
     <data key='user.LA_IntegratedSearchEnabled,com.ibm.tivoli.netcool.omnibus.webgui' value='true'/>
   </profile>
   <install>
-    <!-- IBM Tivoli Netcool/OMNIbus Web GUI -->
     <offering profile='IBM Netcool GUI Components' id='com.ibm.tivoli.netcool.omnibus.webgui' features='VMM.feature,WebGUI.feature,Scala.feature'/>
   </install>
   <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
 </agent-input>
+
