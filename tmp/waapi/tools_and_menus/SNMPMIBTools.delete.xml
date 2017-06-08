@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+    
+    <method methodName="menu.removeItems" >
+        <supermenu name="alerts" mnemonic="" >
+            <tool name="SNMPMIBBrowser" label="" mnemonic="" shortcut="" />
+            <tool name="SNMPMIBGrapher" label="" mnemonic="" shortcut="" />
+            <separator />
+        </supermenu>        
+    </method>
+
+    <method methodName="tool.deleteTool">
+        <tool:tool name="SNMPMIBBrowser"/>
+        <tool:tool name="SNMPMIBGrapher"/>
+    </method>
+    
+</methodCall>

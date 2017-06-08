@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+    <method methodName="tool.createTool">
+        <tool:tool name="ShowSAERelatedServices" >
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <!-- the default datasource is added by default, so we do not need it on that query -->
+            <tool:cgiurl foreach="false" windowforeach="false" target="_blank" method="GET" url="$(SERVER)/eventviewer/eventViewer.jsp?sql=%22NmosEntityId%20in%20(select%20ServiceEntityId%20from%20precision.entity_service%20where%20NmosEntityId%3D{$selected_rows.NmosEntityId})%22&amp;viewname=NetworkManagementEvents&amp;viewtype=global&amp;filtertype=user_transient&amp;filtername=SAERelatedServices_{$selected_rows.NmosEntityId}" >
+            </tool:cgiurl>
+        </tool:tool>
+    </method>
+
+    <method methodName="menu.addItems">
+        <supermenu name="alerts" before='ITNMReports' >
+            <tool name="ShowSAERelatedServices" label="Show SAE Related Services" mnemonic="" shortcut="" />
+        </supermenu>
+    </method>
+    
+</methodCall>

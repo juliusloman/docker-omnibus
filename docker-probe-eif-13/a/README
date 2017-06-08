@@ -1,0 +1,252 @@
+PATCH omnibus-solaris2-probe-nco-p-tivoli-eif-13_0 - Netcool/OMNIbus Tivoli EIF probe
+---------------------------------------------------
+Name
+~~~~
+probe-nco-p-tivoli-eif
+
+Please refer to the complete documentation on the IBM support site for full instructions of how to use this product.
+http://publib.boulder.ibm.com/infocenter/tivihelp/v8r1/index.jsp
+
+
+Known Issues
+~~~~~~~~~~~~
+Some probe properties do not recognize environment variables (either $NCHOME/$OMNIHOME or %NCHOME%/%OMNIHOME) and to solve this requires fix in non-native package; Affected probe properties: EIFTraceFileNAme, EIFDebugFileName, EIFLogFileName, StreamCapture (MR0809102338).
+Workaround: to put full path instead of $OMNIHOME/$NCHOME for the afected probe properties, eg: /opt/IBM/tivoli/netcool/omnibus/var/tivoli_eif.stream.
+
+Patch Dependencies
+~~~~~~~~~~~~~~~~~~
+    probe-sdk-java-1_0
+    probe-nonnative-base-12
+    Notes: for probe-nonnative-base-13 and above does not require probe-sdk-java to be install prior to nonnative v13 installation.
+    
+    Netcool/OMNIbus 7.2.1 + Fix Pack 11 or later
+    Netcool/OMNIbus 7.3.0 + Fix Pack 6 or later
+    Netcool/OMNIbus 7.3.1 + Fix Pack 2 or later
+    Netcool/OMNIbus 7.4.0 + Fix Pack 1  
+
+    Java 1.5
+
+Additional Patch Dependencies if using Config Analyser
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    tools-config-analyser-1_2
+
+Adding TEC-related Object Server fields
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NOTE: If you have already installed the "Netview to Omnibus" or "TEC to Omnibus"
+SQL updates, then there is no need to perform this step
+
+In order to map all TEC fields to Netcool Object Server fields, it is necessary
+to add some extra fields to the Object Server. In order to do this, run:-
+
+NOTE: 
+    NC_PROBE_EXT environment variable points to home directory of probe extention 
+    
+Unix:
+    $OMNIHOME/bin/nco_sql -user <username> -password <password> -server <server_name> < $NC_PROBE_EXT/eif/IBM_TEC/tec_db_update.sql
+
+Windows:
+    %NCHOME%\bin\redist\isql.bat -U <username> -P <password> -S <server_name> < %NC_PROBE_EXT%\eif\IBM_TEC\tec_db_update.sql 
+
+Adding TEC-related rules file of TPC and TSM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tivoli EIF probe can manage events from IBM Total Storage Productivity Center(TPC) and Tivoli Storage Manager(TSM),
+the RulesFile property in tivoli_eif.props file need not require any change, it will include all the rules file and processe
+the events accordingly.
+
+Quick Start for Unix
+~~~~~~~~~~~~~~~~~~~~
+    - Install patch dependencies
+    - Install probe using:-
+    - $OMNIHOME/install/nco_patch -install <patch>
+    - Specify the port through which events will be sent using the PortNumber property
+    - Run the probe using:-
+         $OMNIHOME/probes/nco_p_tivoli_eif
+
+Quick Start for Windows
+~~~~~~~~~~~~~~~~~~~~~~~
+    - Install patch dependencies
+    - Install probe using:-
+    - "%OMNIHOME%\probes\win32\nco_p_tivoli_eif" /install
+    - Specify the port through which events will be sent using the PortNumber property
+    - Start the "NCO NONNATIVE Probe (NCOTivoliEifProbe)" service.
+
+Revision History
+~~~~~~~~~~~~~~~~
+
+PATCH probe-nco-p-tivoli-eif-13
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    - GA release 13_0 EIF enhancement
+    APAR IV15538 - High CPU secs used by EIF V11.0 probe java process while idle
+    APAR IV16899 - ERROR: Unable to bind socket TRANSPORTTRANSPORTLIST=T1
+    APAR IZ97770 - EIF probe doesn't shutdown cleanly under PA
+
+PATCH probe-nco-p-tivoli-eif-12
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    APAR IV10145 - Fixed tec_db_update.sql script not updating clear severity events after deduplication.
+    APAR IV10512 - Remove non-expandable variable ($Id$) from probe rules files.
+    APAR IV03958 - Remove the escape single quote from event string.
+    APAR IV03511 - Fixed Windows probe fails to start on Japanese locale.
+
+PATCH probe-nco-p-tivoli-eif-11
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+        - GA release 11_0 EIF Probe performance enhancement
+    - Introduce new properties EIFHeartBeatInterval and EIFHeartBeatFailures to manage heart beat on EIF layer
+    - Below properties have been deprecated and no longer in use for release v11:
+      - Inactivity
+      - Retry
+      - BufferEvents
+      - BufEvtMaxSize
+      - EIFCacheFile 
+    - Rules file changes to support TBSM, ITM VMware Agent, and z/OS Event Pump usage.
+    APAR IV01665 - Fixed probe not launching when Windows directory has a space.
+    APAR IV00724 - Reintroduction of ReadRetryInterval attribute to maintain backward compatibility with version 9.x tivoli_eif.props files
+
+PATCH probe-nco-p-tivoli-eif-10
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+        General maintenance release - incorporates all previous fixes since GA release 9_0
+        IZ88223 - Introduced EIFDebugLevel and EIFDebugFileName keywords for troubleshooting purpose
+                  Fixed a Java Out of Memory issue based on invalid events
+        IZ94632 - Changed name of ReadRetryInterval  to EIFReadRetryInterval in property and command line
+        IZ94748 - Enhanced on APAR IZ83417 for selecting the latest Java version in Omnibus Installed Env
+        IZ94938 - Enhancement on severity and Alert Group field in tsm rules file
+
+PATCH probe-nco-p-tivoli-eif-9
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 5
+        APAR IZ83417 - Locates Java in Omnibus Installation else uses system's default Java (Window Env.)
+
+REVISION 4
+    APAR IZ80140 - Move the <probe>.check.jar to $OMNIHOME/probes/java/ for Unix platform.
+
+REVISION 3
+    APAR IZ76108 - Fixed NullPointerException during parsing events for StreamCapture file writer.
+
+REVISION 2
+        Enhancement MR112509740 (ALM00132208)- Check for Port Availability when Probe Starts
+        ALM00132188 - Added BufEvtMaxSize property
+        APAR IZ70452 - Changes to path from Unix base to Windows base in nco_p_tivoli_eif.bat
+
+REVISION 1
+    Added evd.jar Fixpack 9
+
+REVISION 0
+    Enhancement MR0623092513 - Added FlushBufferInterval property
+    Added UTF-8 support
+    APAR IZ61742 : Changed EIFLogFile to EIFLogFileName and EIFTraceFile to EIFTraceFileName in the props file
+
+PATCH probe-nco-p-tivoli-eif-8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 3
+
+APAR IZ56149 : Changed name of RetryInterval property to ReadRetryInterval
+
+
+REVISION 2
+
+APAR IZ56149,alm00116525 : Added EIF API RetryInterval timeout property.
+
+REVISION 1
+
+APAR IZ52401,alm00112560 : Added EIF API tracing and logging properties.
+
+REVISION 0
+    - Added support for the config analyser
+
+PATCH probe-nco-p-tivoli-eif-7
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    NBS 061415 Added two rules file to manage events from TPC and TSM.
+               Incorporates all previous fixes since GA release 4_0
+
+
+PATCH probe-nco-p-tivoli-eif-6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    NBS 061366 Added MaxEventQueueSize property. Property allows for buffer size of non native to be explicitly set
+
+    NBS 061366 Added support for portmapper properties, allows probe to appear as a TEC server to old EIF endpoints.
+    Note, this functionality is only supported under non Windows environments.
+
+PATCH probe-nco-p-tivoli-eif-5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    Probe doesn't contain any encryption, and therefore is cleared for FIPS compliance against current version 3.9 of the EIF API.
+    APAR IZ26507, NBS 58584 - Updated Known Issues section of the README
+
+PATCH probe-nco-p-tivoli-eif-4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    General maintenance release - incorporates all previous fixes since GA release 3_0
+
+PATCH probe-nco-p-tivoli-eif-3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 2
+    APAR IZ14100, NBS 55276 - Updated Known Issues section of the README
+REVISION 1
+    APAR IZ13710 - Added a new property BufferEvents
+REVISION 0
+    General maintenance release - incorporates all previous fixes since GA release 2_0
+
+PATCH probe-nco-p-tivoli-eif-2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 4
+    APAR IZ08631, NBS 54567 - Fixed the command line install issue.
+REVISION 3
+    APAR IZ00696, NBS 052182 - Added HandleMalformedAlarms property in order to handle malformed alarms.
+REVISION 2
+    APAR IY98296, NBS 51095 - Fixed NullPointerException during parsing events.
+REVISION 1
+    Probe now sets last event time in the parser to ensure large batches of events
+    are not timed out.
+REVISION 0
+    Probe now supports Peer-to-Peer functionality.
+    Probe now supports IPv6 on Solaris.
+
+PATCH probe-nco-p-tivoli-eif-1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 1
+    NBS 46514 : Added latest version of evd.jar which increased the event handling capactiy of the probe.
+    Electronic licensing no longer implemented. Probes are now subject to the IBM Licensing agreement.
+
+REVISION 0
+    Added new token ($EventString) which will contain the entire event in one string
+
+PATCH probe-nco-p-tivoli-eif-0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    Electronic licensing no longer implemented.Probes are now subject to the IBM Licensing agreement
+    NBS 47455 - Changed the name of the probe to nco_p_tivoli_eif.
+
+PATCH probe-nco-p-tme10tecad-4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    Probe now uses the EIF Java API. The following tickets have therefore been fixed
+    or no longer apply:-
+    NBS 29204 - Probe no longer core dumps on no name resolution
+    NBS 31663 - Probe now supports TEC version 3.9
+    NBS 32902 - Probe now tokenises as per the documentation
+    NBS 41723 - Probe will no longer fail to read an event
+
+PATCH probe-nco-p-tme10tecad-3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 0
+    NBS 33781 - Quoted text is now treated as a single token.
+    NBS 33145 - Patches are now available on all Netcool supported UNIX platforms.
+    NBS 24620 - Compatibility patch released.
+    NBS 41952 - IPv6 support added.
+
+PATCH probe-nco-p-tme10tecad-2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REVISION 2
+    NBS 38128 - Fix to stop ProbeWatch messages being sent when ReportStatus is set to 0
+
+REVISION 1
+    NBS 27935 - Probe can now parse TEC data with or without newlines as value separators.
+
+REVISION 0
+    Compatibility Patch for Tivoli TME10 TEC Adaptor
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?atoc version='0.0.1'?>
+<cset q="plugin" >
+<summary  count="1"  totalSize="300827" >
+<digs da="MD5"  count="1" />
+</summary>
+<cset id="com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.license" >
+<summary  count="1"  totalSize="300827" >
+<digs da="MD5"  count="1" />
+</summary>
+<cset v="1.*" >
+<summary  count="1"  totalSize="300827" >
+<digs da="MD5"  count="1" />
+</summary>
+<cset p="*" >
+<summary  count="1"  totalSize="300827" >
+<digs da="MD5"  count="1" />
+</summary>
+<af id="com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.license"  v="1.13.0.7"  p=""  ex="false"  sz="300827" >
+<dig da="MD5"  dv="2fd40be43e5294c7952145a98270cf79" />
+
+</af>
+</cset>
+</cset>
+</cset>
+</cset>

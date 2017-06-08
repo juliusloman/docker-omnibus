@@ -1,0 +1,10 @@
+Installation
+------------
+
+This zip file contains the necessary information and files required to install this product using Rational Installation Manager.
+
+The product can be installed in either one of two ways, both of which require the user to add a repository to the list of repositories in Installation Manager.
+
+1) Installation Manager can install a product using the zip file provided, without the need to unzip the file.
+
+2) Add the repository.config file found in the zip file.

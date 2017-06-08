@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+    <method methodName="tool.createTool">
+    
+        <tool:tool name="SnmpInBandwidthReport">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures = 'width=800,height=600,resizable=1,menubar=1,scrollbars=1';  var windowURL='$(SERVER)public/../../../../tarf/servlet/dispatch?b_action=cognosViewer&amp;ui.action=run&amp;ui.object=/content/package[@name=%27Network Manager%27]/folder[@name=%27Performance Reports%27]/report[@name=%27Bandwidth Utilization%27]&amp;run.outputFormat=HTML&amp;run.prompt=false&amp;p_Domain={@NmosDomainName}&amp;p_PollDefinition=snmpInBandwidth&amp;p_PollPolicy=%&amp;p_Hostname={@Node}&amp;p_IPAddress=%'; var windowName='_blank'; open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+
+        <tool:tool name="SnmpOutBandwidthReport">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures = 'width=800,height=600,resizable=1,menubar=1,scrollbars=1';  var windowURL='$(SERVER)public/../../../../tarf/servlet/dispatch?b_action=cognosViewer&amp;ui.action=run&amp;ui.object=/content/package[@name=%27Network Manager%27]/folder[@name=%27Performance Reports%27]/report[@name=%27Bandwidth Utilization%27]&amp;run.outputFormat=HTML&amp;run.prompt=false&amp;p_Domain={@NmosDomainName}&amp;p_PollDefinition=snmpOutBandwidth&amp;p_PollPolicy=%&amp;p_Hostname={@Node}&amp;p_IPAddress=%'; var windowName='_blank'; open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+
+        <tool:tool name="IfInDiscardsReport">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures = 'width=800,height=600,resizable=1,menubar=1,scrollbars=1';var windowURL='$(SERVER)public/../../../../tarf/servlet/dispatch?b_action=cognosViewer&amp;ui.action=run&amp;ui.object=/content/package[@name=%27Network Manager%27]/folder[@name=%27Performance Reports%27]/report[@name=%27Historical SNMP Trend Analysis%27]&amp;run.outputFormat=HTML&amp;run.prompt=false&amp;p_Domain={@NmosDomainName}&amp;p_PollDefinition=ifInDiscards&amp;p_PollPolicy=%&amp;p_Hostname={@Node}&amp;p_IPAddress=%'; var windowName='_blank'; open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+
+        <tool:tool name="MemoryUsageReport">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures = 'width=800,height=600,resizable=1,menubar=1,scrollbars=1';  var windowURL='$(SERVER)public/../../../../tarf/servlet/dispatch?b_action=cognosViewer&amp;ui.action=run&amp;ui.object=/content/package[@name=%27Network Manager%27]/folder[@name=%27Performance Reports%27]/report[@name=%27Historical SNMP Trend Analysis%27]&amp;run.outputFormat=HTML&amp;run.prompt=false&amp;p_Domain=@{NmosDomainName}&amp;p_PollDefinition=memoryPoll&amp;p_PollPolicy=%&amp;p_Hostname={@Node}&amp;p_IPAddress=%'; var windowName='_blank'; open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+
+        <tool:tool name="CPUUsageReport">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures = 'width=800,height=600,resizable=1,menubar=1,scrollbars=1';  var windowURL='$(SERVER)public/../../../../tarf/servlet/dispatch?b_action=cognosViewer&amp;ui.action=run&amp;ui.object=/content/package[@name=%27Network Manager%27]/folder[@name=%27Performance Reports%27]/report[@name=%27Historical SNMP Trend Analysis%27]&amp;run.outputFormat=HTML&amp;run.prompt=false&amp;p_Domain={@NmosDomainName}&amp;p_PollDefinition=cpuBusyPoll&amp;p_PollPolicy=%&amp;p_Hostname={@Node}&amp;p_IPAddress=%'; var windowName='_blank'; open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+
+        <tool:tool name="MonitoredDevicesReport">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures = 'width=800,height=600,resizable=1,menubar=1,scrollbars=1';  var windowURL='$(SERVER)public/../../../../tarf/servlet/dispatch?b_action=cognosViewer&amp;ui.action=run&amp;ui.object=/content/package[@name=%27Network Manager%27]/folder[@name=%27Monitoring Reports%27]/report[@name=%27Monitored Device Details%27]&amp;run.outputFormat=HTML&amp;run.prompt=false&amp;p_Device={@Node}&amp;p_Domain={@NmosDomainName}'; var windowName='_blank'; open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+
+    </method>
+
+<method methodName="menu.createMenu">
+        <supermenu name="ITNMReports" label="Network+Manager+Reports" mnemonic="" >
+          <tool label="Snmp In Bandwidth Report" name="SnmpInBandwidthReport" mnemonic="" shortcut="" />
+          <tool label="Snmp Out Bandwidth Report" name="SnmpOutBandwidthReport" mnemonic="" shortcut="" />
+          <tool label="ifInDiscards Report" name="IfInDiscardsReport" mnemonic="" shortcut="" />
+          <tool label="Memory Usage Report" name="MemoryUsageReport" mnemonic="" shortcut="" />
+          <tool label="CPU Usage Report" name="CPUUsageReport" mnemonic="" shortcut="" />
+
+          <tool label="Monitored Devices Report" name="MonitoredDevicesReport" mnemonic="" shortcut="" />
+        </supermenu>
+    </method>
+
+    <method methodName="menu.addItems">
+        <supermenu name="alerts" before='Ping' >
+            <menu name="ITNMReports" label="ITNM Reports" mnemonic="" />
+            <separator />
+        </supermenu>
+    </method>
+</methodCall>

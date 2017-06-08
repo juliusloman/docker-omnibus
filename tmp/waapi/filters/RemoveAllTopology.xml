@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+	<method methodName="filter.deleteFilter">
+		<filter name="AllTopologyEvents" type="global"/>
+	</method>
+</methodCall>

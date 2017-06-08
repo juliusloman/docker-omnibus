@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='/opt/IBM/IBMIMShared'/>
+  </variables>
+  <server>
+    <repository location='/tmp/install/itnm-fp/repositories/disk1'/>
+    <repository location='/tmp/install/itnm/repositories/disk1'/>
+    <repository location='/tmp/install/webgui-fp/OMNIbusWebGUI_NOIExtensionsRepository/delta'/>
+    <repository location='/tmp/install/webgui-fp/OMNIbusWebGUIRepository/delta'/>
+    <repository location='/tmp/install/webgui/OMNIbusWebGUIRepository'/>
+    <repository location='/tmp/install/jazz/im.linux.x86_64'/>
+    <repository location='/tmp/install/jazz/JazzSMRepository/disk1'/>
+    <repository location='/tmp/install/was/WASRepository/disk1'/>
+  </server>
+  <profile id='IBM WebSphere Application Server V8.5' installLocation='/opt/IBM/WebSphere/AppServer'>
+    <data key='cic.selector.arch' value='x86'/>
+  </profile>
+  <install>
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.BASE.v85' features='core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit'/>
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v70' features='com.ibm.sdk.7'/>
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.tivoli.tacct.psc.install.was85.extension' features='main.feature'/>
+  </install>
+  <profile id='Core services in Jazz for Service Management' installLocation='/opt/IBM/JazzSM'>
+    <data key='cic.selector.arch' value='x86_64'/>
+    <data key='user.BOOTSTRAP_ADDRESS' value='16312'/>
+    <data key='user.CSIV2_SSL_MUTUALAUTH_LISTENER_ADDRESS' value='16322'/>
+    <data key='user.SOAP_CONNECTOR_ADDRESS' value='16313'/>
+    <data key='user.CSIV2_SSL_SERVERAUTH_LISTENER_ADDRESS' value='16323'/>
+    <data key='user.DCS_UNICAST_ADDRESS' value='16318'/>
+    <data key='user.IPC_CONNECTOR_ADDRESS' value='16314'/>
+    <data key='user.ORB_LISTENER_ADDRESS' value='16320'/>
+    <data key='user.WC_defaulthost_secure' value='16311'/>
+    <data key='user.REST_NOTIFICATION_PORT' value='16324'/>
+    <data key='user.WC_defaulthost' value='16310'/>
+    <data key='user.WC_adminhost_secure' value='16316'/>
+    <data key='user.SAS_SSL_SERVERAUTH_LISTENER_ADDRESS' value='16321'/>
+    <data key='user.WC_adminhost' value='16315'/>
+    <data key='user.TIP_CONTEXT_ROOT' value='/ibm/console'/>
+    <data key='user.WAS_HOME' value='/opt/IBM/WebSphere/AppServer'/>
+    <data key='user.CREATE_NEW_WAS_PROFILE' value='true'/>
+    <data key='user.WAS_PROFILE_PATH' value='/opt/IBM/JazzSM/profile'/>
+    <data key='user.WAS_PROFILE_NAME' value='JazzSMProfile'/>
+    <data key='user.WAS_HOST_NAME' value='localhost'/>
+    <data key='user.WAS_SERVER_NAME' value='server1'/>
+    <data key='user.WAS_NODE' value='JazzSMNode01'/>
+    <data key='user.WAS_USER_NAME' value='smadmin'/>
+    <data key='user.WAS_PASSWORD' value='WhqRS8fKYHHBpMh30p03mA=='/>
+    <data key='user.WAS_CELL' value='JazzSMNode01Cell'/>
+    <data key='user.DB_JDBC_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='DB2'/>
+    <data key='user.DB_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='TCR3'/>
+    <data key='user.DB_CONN_URL,com.ibm.tivoli.tacct.psc.install.reporting.services' value='jdbc:db2://127.0.0.1:50000/TCR3'/>
+    <data key='user.DB_USER_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='db2inst1'/>
+    <data key='user.DB_PASSWORD,com.ibm.tivoli.tacct.psc.install.reporting.services' value='sSPEJsZKGGQiNQ/4hUJ3wQ=='/>
+    <data key='user.DB_JDBC_HOST_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='127.0.0.1'/>
+    <data key='user.verifyCredentials,com.ibm.tivoli.tacct.psc.install.reporting.services' value='false'/>
+    <data key='user.DB_JDBC_PORT,com.ibm.tivoli.tacct.psc.install.reporting.services' value='50000'/>
+    <data key='user.COGNOS_IMG_LOCATION,com.ibm.tivoli.tacct.psc.install.reporting.services' value='/tmp/install/tcr/TCRCognos'/>
+  </profile>
+  <install>
+    <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.tip.install' features='com.ibm.tivoli.tacct.psc.install.server.feature.tip.install,com.ibm.tivoli.tacct.psc.install.server.feature.tip.config'/>
+    <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.install.reporting.services' features='com.ibm.tivoli.tacct.psc.install.server.feature.config.files,com.ibm.tivoli.tacct.psc.reporting.services.install.ant.wrapper.feature,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.schema.install,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.application.install,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.application.config'/>
+  </install>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+</agent-input>
+

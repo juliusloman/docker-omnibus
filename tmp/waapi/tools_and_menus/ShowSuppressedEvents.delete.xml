@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+    
+    <method methodName="menu.removeItems" >
+        <supermenu name="alerts" mnemonic="" >
+            <tool name="ShowSuppressedEvents" label="" mnemonic="" shortcut="" />
+        </supermenu>        
+    </method>
+
+    <method methodName="tool.deleteTool">
+        <tool:tool name="ShowSuppressedEvents"/>
+    </method>
+    
+    <method methodName="cgi.unregisterCGI">
+        <cgi name="launch-suppressed-events.cgi" />
+    </method>
+    
+</methodCall>

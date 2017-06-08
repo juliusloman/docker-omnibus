@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadata version='0.0.4'?>
+<su id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.su' version='13.0.7' iuCount='6'>
+  <selector id='main'/>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.linux2s390' version='999.999.999.-1628556855' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='linux'/>
+          <or>
+            <selectedBy id='arch' value='s390'/>
+            <selectedBy id='arch' value='s390x'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nco-p-tivoli-eif.linux2s390/1.0.0.03fc662142be026c758573ead448d186'
+        destination='${context:installLocation}/omnibus' downloadSize='355378' installSize='393631'/>
+      <artifact
+        type='file'
+        id='com.ibm.tivoli.omnibus.OMNIbusIMExtension'
+        active='true'
+        version='1.0.0.8b28b54964cf40e83ea224f09e30b245'
+        ext='jar'
+        duringPhases='post_install_configure,pre_uninstall_configure' downloadSize='12424' installSize='12424'/>
+      <perform duringPhases='post_install_configure,pre_uninstall_configure'>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</arg>
+          <arg>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.env</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/linux2s390/default/tivoli_eif.props</arg>
+          <arg>${context:installLocation}/omnibus/probes/linux2s390/tivoli_eif.props</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/linux2s390/default/tivoli_eif.rules</arg>
+          <arg>${context:installLocation}/omnibus/probes/linux2s390/tivoli_eif.rules</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+      </perform>
+      <perform duringPhases='uninstall'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+      </perform>
+      <perform duringPhases='install'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+        <createSymLink
+          link='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          target='nco_jprobe'/>
+      </perform>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rw'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</file>
+          <file>${context:installLocation}/omnibus/probes/linux2s390/default/tivoli_eif.props</file>
+          <file>${context:installLocation}/omnibus/probes/linux2s390/default/tivoli_eif.rules</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/java/jars/evd.jar</file>
+          <file>${context:installLocation}/omnibus/java/jars/log.jar</file>
+          <file>${context:installLocation}/omnibus/platform/linux2s390/bin/NCOPTIVOLIEIF0100.SYS2</file>
+          <file>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.jar</file>
+          <file>${context:installLocation}/omnibus/probes/java/tivoli_eif.check.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.linux2x86' version='999.999.999.-431508542' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='linux'/>
+          <or>
+            <selectedBy id='arch' value='x86'/>
+            <selectedBy id='arch' value='x86_64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nco-p-tivoli-eif.linux2x86/1.0.0.379e7b6fade64b70ac71c9d41b8c0989'
+        destination='${context:installLocation}/omnibus' downloadSize='355361' installSize='393621'/>
+      <artifact
+        type='file'
+        id='com.ibm.tivoli.omnibus.OMNIbusIMExtension'
+        active='true'
+        version='1.0.0.8b28b54964cf40e83ea224f09e30b245'
+        ext='jar'
+        duringPhases='post_install_configure,pre_uninstall_configure' downloadSize='12424' installSize='12424'/>
+      <perform duringPhases='post_install_configure,pre_uninstall_configure'>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</arg>
+          <arg>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.env</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/linux2x86/default/tivoli_eif.props</arg>
+          <arg>${context:installLocation}/omnibus/probes/linux2x86/tivoli_eif.props</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/linux2x86/default/tivoli_eif.rules</arg>
+          <arg>${context:installLocation}/omnibus/probes/linux2x86/tivoli_eif.rules</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+      </perform>
+      <perform duringPhases='uninstall'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+      </perform>
+      <perform duringPhases='install'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+        <createSymLink
+          link='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          target='nco_jprobe'/>
+      </perform>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rw'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</file>
+          <file>${context:installLocation}/omnibus/probes/linux2x86/default/tivoli_eif.props</file>
+          <file>${context:installLocation}/omnibus/probes/linux2x86/default/tivoli_eif.rules</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/java/jars/evd.jar</file>
+          <file>${context:installLocation}/omnibus/java/jars/log.jar</file>
+          <file>${context:installLocation}/omnibus/platform/linux2x86/bin/NCOPTIVOLIEIF0100.SYS2</file>
+          <file>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.jar</file>
+          <file>${context:installLocation}/omnibus/probes/java/tivoli_eif.check.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.hpux11hpia' version='999.999.999.1000290914' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='hpux'/>
+          <or>
+            <selectedBy id='arch' value='ia64_32'/>
+            <selectedBy id='arch' value='ia64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nco-p-tivoli-eif.hpux11hpia/1.0.0.94c17fd7a83d500dfd27c29f33ac92cf'
+        destination='${context:installLocation}/omnibus' downloadSize='355407' installSize='393654'/>
+      <artifact
+        type='file'
+        id='com.ibm.tivoli.omnibus.OMNIbusIMExtension'
+        active='true'
+        version='1.0.0.8b28b54964cf40e83ea224f09e30b245'
+        ext='jar'
+        duringPhases='post_install_configure,pre_uninstall_configure' downloadSize='12424' installSize='12424'/>
+      <perform duringPhases='post_install_configure,pre_uninstall_configure'>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/hpux11hpia/default/tivoli_eif.props</arg>
+          <arg>${context:installLocation}/omnibus/probes/hpux11hpia/tivoli_eif.props</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/hpux11hpia/default/tivoli_eif.rules</arg>
+          <arg>${context:installLocation}/omnibus/probes/hpux11hpia/tivoli_eif.rules</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</arg>
+          <arg>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.env</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+      </perform>
+      <perform duringPhases='uninstall'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+      </perform>
+      <perform duringPhases='install'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+        <createSymLink
+          link='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          target='nco_jprobe'/>
+      </perform>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rw'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/hpux11hpia/default/tivoli_eif.props</file>
+          <file>${context:installLocation}/omnibus/probes/hpux11hpia/default/tivoli_eif.rules</file>
+          <file>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/java/jars/evd.jar</file>
+          <file>${context:installLocation}/omnibus/java/jars/log.jar</file>
+          <file>${context:installLocation}/omnibus/platform/hpux11hpia/bin/NCOPTIVOLIEIF0100.SYS2</file>
+          <file>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.jar</file>
+          <file>${context:installLocation}/omnibus/probes/java/tivoli_eif.check.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.solaris2' version='999.999.999.-47399944' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='solaris'/>
+          <or>
+            <selectedBy id='arch' value='sparc'/>
+            <selectedBy id='arch' value='sparc64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nco-p-tivoli-eif.solaris2/1.0.0.7fdb8f1a9823a26e36adb7aa7eaf4a6e'
+        destination='${context:installLocation}/omnibus' downloadSize='355373' installSize='393635'/>
+      <artifact
+        type='file'
+        id='com.ibm.tivoli.omnibus.OMNIbusIMExtension'
+        active='true'
+        version='1.0.0.8b28b54964cf40e83ea224f09e30b245'
+        ext='jar'
+        duringPhases='post_install_configure,pre_uninstall_configure' downloadSize='12424' installSize='12424'/>
+      <perform duringPhases='post_install_configure,pre_uninstall_configure'>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</arg>
+          <arg>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.env</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/solaris2/default/tivoli_eif.props</arg>
+          <arg>${context:installLocation}/omnibus/probes/solaris2/tivoli_eif.props</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/solaris2/default/tivoli_eif.rules</arg>
+          <arg>${context:installLocation}/omnibus/probes/solaris2/tivoli_eif.rules</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+      </perform>
+      <perform duringPhases='uninstall'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+      </perform>
+      <perform duringPhases='install'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+        <createSymLink
+          link='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          target='nco_jprobe'/>
+      </perform>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rw'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</file>
+          <file>${context:installLocation}/omnibus/probes/solaris2/default/tivoli_eif.props</file>
+          <file>${context:installLocation}/omnibus/probes/solaris2/default/tivoli_eif.rules</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/java/jars/evd.jar</file>
+          <file>${context:installLocation}/omnibus/java/jars/log.jar</file>
+          <file>${context:installLocation}/omnibus/platform/solaris2/bin/NCOPTIVOLIEIF0100.SYS2</file>
+          <file>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.jar</file>
+          <file>${context:installLocation}/omnibus/probes/java/tivoli_eif.check.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.aix5' version='999.999.999.869638175' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='aix'/>
+          <or>
+            <selectedBy id='arch' value='ppc'/>
+            <selectedBy id='arch' value='ppc64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nco-p-tivoli-eif.aix5/1.0.0.04910f29fd7c597941f09cc4b129e2e2'
+        destination='${context:installLocation}/omnibus' downloadSize='355332' installSize='393612'/>
+      <artifact
+        type='file'
+        id='com.ibm.tivoli.omnibus.OMNIbusIMExtension'
+        active='true'
+        version='1.0.0.8b28b54964cf40e83ea224f09e30b245'
+        ext='jar'
+        duringPhases='post_install_configure,pre_uninstall_configure' downloadSize='12424' installSize='12424'/>
+      <perform duringPhases='post_install_configure,pre_uninstall_configure'>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/aix5/default/tivoli_eif.props</arg>
+          <arg>${context:installLocation}/omnibus/probes/aix5/tivoli_eif.props</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/aix5/default/tivoli_eif.rules</arg>
+          <arg>${context:installLocation}/omnibus/probes/aix5/tivoli_eif.rules</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</arg>
+          <arg>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.env</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+      </perform>
+      <perform duringPhases='uninstall'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+      </perform>
+      <perform duringPhases='install'>
+        <delete
+          file='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          deleteDirIfEmpty='true'/>
+        <createSymLink
+          link='${context:installLocation}/omnibus/probes/nco_p_tivoli_eif'
+          target='nco_jprobe'/>
+      </perform>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rw'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/aix5/default/tivoli_eif.props</file>
+          <file>${context:installLocation}/omnibus/probes/aix5/default/tivoli_eif.rules</file>
+          <file>${context:installLocation}/omnibus/probes/java/default/nco_p_tivoli_eif.env</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/java/jars/evd.jar</file>
+          <file>${context:installLocation}/omnibus/java/jars/log.jar</file>
+          <file>${context:installLocation}/omnibus/platform/aix5/bin/NCOPTIVOLIEIF0100.SYS2</file>
+          <file>${context:installLocation}/omnibus/probes/java/nco_p_tivoli_eif.jar</file>
+          <file>${context:installLocation}/omnibus/probes/java/tivoli_eif.check.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.win32' version='999.999.999.1509099067' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='win32'/>
+          <or>
+            <selectedBy id='arch' value='x86'/>
+            <selectedBy id='arch' value='x86_64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nco-p-tivoli-eif.win32/1.0.0.9cda6ed40ffcb9abde9767cac206d1ef'
+        destination='${context:installLocation}/omnibus' downloadSize='357166' installSize='399157'/>
+      <artifact
+        type='file'
+        id='com.ibm.tivoli.omnibus.OMNIbusIMExtension'
+        active='true'
+        version='1.0.0.8b28b54964cf40e83ea224f09e30b245'
+        ext='jar'
+        duringPhases='post_install_configure,pre_uninstall_configure' downloadSize='12424' installSize='12424'/>
+      <perform duringPhases='post_install_configure,pre_uninstall_configure'>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/win32/default/nco_p_tivoli_eif.bat</arg>
+          <arg>${context:installLocation}/omnibus/probes/win32/nco_p_tivoli_eif.bat</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/win32/default/tivoli_eif.props</arg>
+          <arg>${context:installLocation}/omnibus/probes/win32/tivoli_eif.props</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+        <invoke
+          class='com.ibm.tivoli.omnibus.im.plugin.DefaultFileHandler'
+          classpath='${artifact:id=com.ibm.tivoli.omnibus.OMNIbusIMExtension,version=1.0.0.8b28b54964cf40e83ea224f09e30b245,type=file,ext=jar}'>
+          <arg>${context:installLocation}/omnibus/probes/win32/default/tivoli_eif.rules</arg>
+          <arg>${context:installLocation}/omnibus/probes/win32/tivoli_eif.rules</arg>
+          <arg>${phase}</arg>
+          <arg>${system:osgi.nl}</arg>
+        </invoke>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+</su>

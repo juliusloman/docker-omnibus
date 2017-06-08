@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadata version='0.0.4'?>
+<su id='com.ibm.tivoli.omnibus.integrations.nonnative-base.su' version='16.0.2' iuCount='6'>
+  <selector id='main'>
+    <requiredShareableEntity shareableId='com.ibm.tivoli.omnibus.nco_libOpl' tolerance='[0.0.0,99999.0.0)'>
+      <requiredSelector selectorId='main'/>
+    </requiredShareableEntity>
+  </selector>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nonnative-base.linux2x86' version='999.999.999.-696111949' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='linux'/>
+          <or>
+            <selectedBy id='arch' value='x86'/>
+            <selectedBy id='arch' value='x86_64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nonnative-base.linux2x86/1.0.0.762eab0baf3369e86bbe1cc9ad773550'
+        destination='${context:installLocation}/omnibus' downloadSize='110722' installSize='229083'/>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rwx'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/set_ibm_jre.sh</file>
+          <file>${context:installLocation}/omnibus/probes/linux2x86/nco_p_nonnative</file>
+          <file>${context:installLocation}/omnibus/probes/nco_jprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_nnsaprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_pprobe</file>
+          <file>${context:installLocation}/omnibus/probes/perl/NSProbe.pm</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/NSProbe.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nonnative-base.linux2s390' version='999.999.999.-1425184859' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='linux'/>
+          <or>
+            <selectedBy id='arch' value='s390'/>
+            <selectedBy id='arch' value='s390x'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nonnative-base.linux2s390/1.0.0.4d8e33630d19dcd1442d6af67bfa004f'
+        destination='${context:installLocation}/omnibus' downloadSize='107329' installSize='225339'/>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rwx'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/set_ibm_jre.sh</file>
+          <file>${context:installLocation}/omnibus/probes/linux2s390/nco_p_nonnative</file>
+          <file>${context:installLocation}/omnibus/probes/nco_jprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_nnsaprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_pprobe</file>
+          <file>${context:installLocation}/omnibus/probes/perl/NSProbe.pm</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/NSProbe.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nonnative-base.hpux11hpia' version='999.999.999.189950054' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='hpux'/>
+          <or>
+            <selectedBy id='arch' value='ia64_32'/>
+            <selectedBy id='arch' value='ia64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nonnative-base.hpux11hpia/1.0.0.cddbddac53432c1b1b5686de2f1c30f5'
+        destination='${context:installLocation}/omnibus' downloadSize='158604' installSize='501739'/>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rwx'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/hpux11hpia/nco_p_nonnative</file>
+          <file>${context:installLocation}/omnibus/probes/java/set_ibm_jre.sh</file>
+          <file>${context:installLocation}/omnibus/probes/nco_jprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_nnsaprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_pprobe</file>
+          <file>${context:installLocation}/omnibus/probes/perl/NSProbe.pm</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/NSProbe.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nonnative-base.win32' version='999.999.999.1569164198' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='win32'/>
+          <or>
+            <selectedBy id='arch' value='x86'/>
+            <selectedBy id='arch' value='x86_64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nonnative-base.win32/1.0.0.f4089106713e07b0d631d52bec1c83c1'
+        destination='${context:installLocation}/omnibus' downloadSize='89985' installSize='195611'/>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nonnative-base.solaris2' version='999.999.999.2024203469' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='solaris'/>
+          <or>
+            <selectedBy id='arch' value='sparc'/>
+            <selectedBy id='arch' value='sparc64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nonnative-base.solaris2/1.0.0.0ef97694ace476de5ed9156b9578c72e'
+        destination='${context:installLocation}/omnibus' downloadSize='116469' installSize='276617'/>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rwx'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/set_ibm_jre.sh</file>
+          <file>${context:installLocation}/omnibus/probes/nco_jprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_nnsaprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_pprobe</file>
+          <file>${context:installLocation}/omnibus/probes/perl/NSProbe.pm</file>
+          <file>${context:installLocation}/omnibus/probes/solaris2/nco_p_nonnative</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/NSProbe.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+  <iu id='com.ibm.tivoli.omnibus.integrations.nonnative-base.aix5' version='999.999.999.-1219057010' adapterId='native'>
+    <selectedByExpression>
+      <and>
+        <selectedBy id='main'/>
+        <and>
+          <selectedBy id='os' value='aix'/>
+          <or>
+            <selectedBy id='arch' value='ppc'/>
+            <selectedBy id='arch' value='ppc64'/>
+          </or>
+        </and>
+      </and>
+    </selectedByExpression>
+    <adapterSpecificData>
+      <zip
+        key='artifact:/native/nonnative-base.aix5/1.0.0.6ccf65ad64fd782db90c35fd58b3d9b6'
+        destination='${context:installLocation}/omnibus' downloadSize='122604' installSize='306580'/>
+      <perform duringPhases='post_install_configure'>
+        <chmod
+          perm='=rwx'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/aix5/nco_p_nonnative</file>
+          <file>${context:installLocation}/omnibus/probes/java/set_ibm_jre.sh</file>
+          <file>${context:installLocation}/omnibus/probes/nco_jprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_nnsaprobe</file>
+          <file>${context:installLocation}/omnibus/probes/nco_pprobe</file>
+          <file>${context:installLocation}/omnibus/probes/perl/NSProbe.pm</file>
+        </chmod>
+        <chmod
+          perm='=r'
+          recursive='false'>
+          <file>${context:installLocation}/omnibus/probes/java/NSProbe.jar</file>
+        </chmod>
+      </perform>
+    </adapterSpecificData>
+  </iu>
+</su>

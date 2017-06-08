@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+
+    <!-- The path in fileName will be esolved and fully qualified by the installer -->
+    <method methodName="cgi.registerCGI">
+        <cgi acl="*" fileName="/opt/IBM/netcool/gui/precision_gui/waapi/tools_and_menus/../cgi/launch-suppressed-events.cgi" name="launch-suppressed-events.cgi" useSmartPageCommands="true"/>
+    </method>
+
+    <method methodName="tool.createTool">
+        <tool:tool name="ShowSuppressedEvents">
+            <tool:access>
+                <tool:osfield/>
+                <tool:security/>
+            </tool:access>
+            <tool:cgiurl foreach="true" method="GET" target="SuppressedEventView" url="$(SERVER)cgi-bin/launch-suppressed-events.cgi" windowforeach="true">
+                <tool:fieldlist>
+                    <tool:field name="NmosCauseType"/>
+                    <tool:field name="ServerName"/>
+                    <tool:field name="ServerSerial"/>
+                </tool:fieldlist>
+            </tool:cgiurl>
+        </tool:tool>
+    </method>
+
+    <method methodName="menu.addItems">
+        <supermenu before="ShowSAERelatedEvents" name="alerts">
+            <tool label="Show Suppressed Event" mnemonic="" name="ShowSuppressedEvents" shortcut=""/>
+        </supermenu>
+    </method>
+    
+</methodCall>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><methodCall>
+	<method methodName="filter.createOrReplaceFilter">
+		<filter metriclabel="Network Management Events: " name="NetworkManagerEvents" sql="Manager = 'ITNM'" type="global"/>
+	</method>
+</methodCall>

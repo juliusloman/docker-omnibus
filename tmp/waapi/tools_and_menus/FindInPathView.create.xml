@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+    <method methodName="tool.createTool">
+        <tool:tool name="FindInPathView">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:cgiurl foreach="true" windowforeach="true" target="_blank" method="GET" url="$(SERVER)public/../../ncp_topoviz/FindPathView.do">
+                <tool:fieldlist>
+                    <tool:field name="NmosObjInst" />
+                    <tool:field name="ServerName" />
+                </tool:fieldlist>
+            </tool:cgiurl>
+        </tool:tool>
+    </method>
+
+    <method methodName="menu.addItems">
+        <supermenu name="alerts" before='CreatePathView' >
+            <tool name="FindInPathView" label="Find in Path View" mnemonic="" shortcut="" />
+        </supermenu>
+    </method>
+    
+</methodCall>

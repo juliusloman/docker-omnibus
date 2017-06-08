@@ -1,12 +1,52 @@
 # Docker Omnibus
 
-Dockerfile for building Netcool/OMNIbus docker containers.
+Dockerfile for building Netcool Operation Insight docker containers.
 
 ## Building 
 
-Dockerfiles are using hostname netcool.install (see Dockerfile) to download installation images. To successfully build docker images, you need to change the INSTALLHOST environment value located in Dockerfile to point to your location of IBM Netcool/OMNIbus installation files. Another option is to add the _netcool.install_ hostname to your local DNS server (if possible) and start a simple http server with your installation images such as python's SimpleHTTPServer.
+Because many components depend on working DB2 database during installation, it
+necessary to build a DB2 container first. Generally all docker images require
+that you set up a HTTP server for supplying installation images (media) and specify 
+names of those installation images either in Dockerfile or as build arguments.
 
-Optionally you can remove installation manager stuff (directories and install data) from image by uncommenting appropriate lines.
+### Setting up HTTP server
+
+If you don't have the NOI installation media accessible via HTTP, the easiest
+way is probably to use python's build in SimpleHTTPServer. Just navigate to
+directory with downloaded NOI images and run
+  
+  python -m SimpleHTTPServer
+
+This starts up a HTTP server serving on port 8000 on all local interfaces.
+
+### DB2
+
+Build the DB2 image using (replace the <HTTP\_ADDRESS> with your actual IP
+address that is accessbile from docker internal network):
+
+  docker build --build-arg INSTALL\_SOURCE=http://<HTTP\_ADDRESS>:8000 -t noi/db2 docker-db2-10.5
+
+If you your interet access requires using proxy, just add add those arguments
+
+  --build-arg no\_proxy=<HTTP\_ADDRESS> --build-arg http\_proxy=<PROXY> --build-arg https\_proxy=<PROXY>
+
+
+DB2 image expects following media (you can override the arguments by editing Dockerfile or by supplying them using --build-arg):
+
+  * INSTALL\_FILE\_DB2="DB2\_Svr\_10.5.0.3\_Linux\_x86-64.tar.gz" (base image)
+  * INSTALL\_FILE\_DB2\_FP="v10.5fp8\_linuxx64\_universal\_fixpack.tar.gz" (optional fixpack image)
+  * INSTALL\_FILE\_DB2\_LIC="DB2\_ESE\_Restricted\_QS\_Act\_10.5.0.1.zip" (optional activation image)
+
+### Netcool/OMNIbus Object Server
+
+Build the Object Server image by running:
+
+  docker build --build-arg INSTALL\_SOURCE=http://<HTTP\_ADDRESS>:8000 -t noi/omnibus docker-omnibus-8.1
+
+DB2 image expects following media (you can override the arguments by editing Dockerfile or by supplying them using --build-arg):
+
+  * INSTALL\_FILE\_CORE="OMNIbus-v8.1.0.5-Core.linux64.zip" (base image)
+  * INSTALL\_FILE\_FP="8.1.0-TIV-NCOMNIbus-Linux-FP0011.zip" (fixpack image)
 
 ## Running
 

@@ -1,0 +1,10 @@
+LIC_AGREEMENT       = ACCEPT
+PROD       = DB2_SERVER_EDITION
+FILE       = /opt/ibm/db2/
+INSTALL_TYPE       = COMPACT
+DAS_CONTACT_LIST       = LOCAL
+DAS_USERNAME       = dasusr1
+DAS_GROUP_NAME       = dasadm1
+DAS_HOME_DIRECTORY       = /home/dasusr1
+DAS_PASSWORD       = daspassword1
+LANG       = EN

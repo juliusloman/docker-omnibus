@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+    <method methodName="tool.createTool">
+        <tool:tool name="SNMPMIBBrowser">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:cgiurl foreach="false" windowforeach="false" target="precision_mibbrowser_dialog" method="GET" url="$(SERVER)public/../../ncp_mibbrowser/Launch.do">
+                <tool:fieldlist>
+                    <tool:field name="Node" />
+                    <tool:field name="ServerName" />
+                </tool:fieldlist>
+            </tool:cgiurl>
+        </tool:tool>
+        
+        <tool:tool name="SNMPMIBGrapher">
+            <tool:access>
+                <tool:osfield />
+                <tool:security />
+            </tool:access>
+            <tool:script foreach="true" command="var windowFeatures='width=820,height=600,resizable=1,menubar=1,scrollbars=1';var windowURL='$(SERVER)public/../../ncp_mibbrowser/pages/mib_graph/mibgraphview_servlet.jsp?init=true&amp;host={@Node}&amp;domain={@NmosDomainName}';var windowName='_blank';open(windowURL, windowName, windowFeatures);" />
+        </tool:tool>
+    </method>
+    
+    <method methodName="menu.addItems">
+        <supermenu name="alerts" before='ShowRootCause' >
+            <tool name="SNMPMIBBrowser" label="Show SNMP MIB Browser" mnemonic="" shortcut="" />
+            <tool name="SNMPMIBGrapher" label="Show SNMP MIB Grapher" mnemonic="" shortcut="" />
+        </supermenu>
+    </method>
+            
+</methodCall>

@@ -1,0 +1,26 @@
+  User Action: Please select the Create/overwrite WebGUI data source option on this panel.
+HNMIM1018W WARNING: The command [/opt/IBM/netcool/gui/omnibus_webgui/waapi/bin/runwaapi, -user, smadmin, -password, ******, -file, /opt/IBM/netcool/gui/precision_gui/waapi/filters/NMFilter.xml] failed with the error code -1. The final error message is  - .
+
+Explanation: A configuration command failed to execute correctly, but it is possible to retry this command manually later.
+
+User Action: Please investigate the Installation Manager log and try to resolve the error reported in the native operation log file before trying this operation again. Find a link to the native log file in the related INFO message just after this WARNING. If you do not see INFO level messages, change the log filter level to include INFO messages. 
+HNMIM1018W WARNING: The command [/opt/IBM/netcool/gui/omnibus_webgui/waapi/bin/runwaapi, -user, smadmin, -password, ******, -file, /opt/IBM/netcool/gui/precision_gui/waapi/filters/AllTopology.xml] failed with the error code -1. The final error message is  - .
+
+Explanation: A configuration command failed to execute correctly, but it is possible to retry this command manually later.
+
+User Action: Please investigate the Installation Manager log and try to resolve the error reported in the native operation log file before trying this operation again. Find a link to the native log file in the related INFO message just after this WARNING. If you do not see INFO level messages, change the log filter level to include INFO messages. 
+HNMIM1018W WARNING: The command [/opt/IBM/netcool/gui/omnibus_webgui/waapi/bin/runwaapi, -user, smadmin, -password, ******, -file, /opt/IBM/netcool/gui/precision_gui/waapi/filters/TopoEventsRCA.xml] failed with the error code -1. The final error message is  - .
+
+Explanation: A configuration command failed to execute correctly, but it is possible to retry this command manually later.
+
+User Action: Please investigate the Installation Manager log and try to resolve the error reported in the native operation log file before trying this operation again. Find a link to the native log file in the related INFO message just after this WARNING. If you do not see INFO level messages, change the log filter level to include INFO messages. 
+HNMIM1018W WARNING: The command [/opt/IBM/netcool/gui/omnibus_webgui/waapi/bin/runwaapi, -user, smadmin, -password, ******, -file, /opt/IBM/netcool/gui/precision_gui/waapi/views/NetworkManagerEventsView.xml] failed with the error code -1. The final error message is  - .
+
+Explanation: A configuration command failed to execute correctly, but it is possible to retry this command manually later.
+
+User Action: Please investigate the Installation Manager log and try to resolve the error reported in the native operation log file before trying this operation again. Find a link to the native log file in the related INFO message just after this WARNING. If you do not see INFO level messages, change the log filter level to include INFO messages. 
+HNMIM1018W WARNING: The command [/opt/IBM/netcool/gui/omnibus_webgui/waapi/bin/runwaapi, -user, smadmin, -password, ******, -file, /opt/IBM/netcool/gui/precision_gui/waapi/views/NMEventsRootCauseView.xml] failed with the error code -1. The final error message is  - .
+
+Explanation: A configuration command failed to execute correctly, but it is possible to retry this command manually later.
+
+User Action: Please investigate the Installation Manager log and try to resolve the error reported in the native operation log file before trying this operation again. Find a link to the native log file in the related INFO message just after this WARNING. If you do not see INFO level messages, change the log filter level to include INFO messages. 

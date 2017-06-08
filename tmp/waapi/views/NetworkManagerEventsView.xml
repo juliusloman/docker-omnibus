@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><methodCall>
+	<method methodName="view.createOrReplaceView">
+		<view type="global" viewName="NetworkManagementEvents">
+			<columns>
+				<visualEntry columnLocked="true" columnWidth="3" dataJustify="centre" fieldName="Severity" fieldTitle="Sev" titleJustify="centre"/>
+				<visualEntry columnWidth="3" dataJustify="left" fieldName="Acknowledged" fieldTitle="Ack" titleJustify="left"/>
+				<visualEntry columnWidth="12" dataJustify="left" fieldName="Node" fieldTitle="Node" titleJustify="left"/>
+				<visualEntry columnWidth="10" dataJustify="left" fieldName="AlertGroup" fieldTitle="Alert Group" titleJustify="left"/>
+				<visualEntry columnWidth="40" dataJustify="left" fieldName="Summary" fieldTitle="Summary" titleJustify="left"/>
+				<visualEntry columnWidth="10" dataJustify="left" fieldName="LastOccurrence" fieldTitle="Last Occurrence" titleJustify="left"/>
+				<visualEntry columnWidth="5" dataJustify="left" fieldName="Type" fieldTitle="Type" titleJustify="left"/>
+				<visualEntry columnWidth="5" dataJustify="left" fieldName="NmosCauseType" fieldTitle="Cause Type" titleJustify="left"/>
+				<visualEntry columnWidth="7" dataJustify="left" fieldName="NmosManagedStatus" fieldTitle="Managed Status" titleJustify="left"/>
+				<visualEntry columnWidth="7" dataJustify="centre" fieldName="NmosObjInst" fieldTitle="Device Id" titleJustify="left"/>
+				<visualEntry columnWidth="7" dataJustify="centre" fieldName="NmosEntityId" fieldTitle="Entity Id" titleJustify="left"/>
+				<visualEntry columnWidth="6" dataJustify="centre" fieldName="NmosSerial" fieldTitle="NMOS Serial" titleJustify="left"/>
+				<visualEntry columnWidth="7" dataJustify="left" fieldName="NmosDomainName" fieldTitle="Domain Name" titleJustify="left"/>
+				<visualEntry columnWidth="5" dataJustify="left" fieldName="Tally" fieldTitle="Count" titleJustify="left"/>
+				<visualEntry columnWidth="10" dataJustify="left" fieldName="Agent" fieldTitle="Agent" titleJustify="left"/>
+				<visualEntry columnWidth="5" dataJustify="left" fieldName="Manager" fieldTitle="Manager" titleJustify="left"/>
+			</columns>
+			<sorting>
+				<sortColumn fieldName="Severity" order="desc"/>
+			</sorting>
+		</view>
+	</method>
+</methodCall>

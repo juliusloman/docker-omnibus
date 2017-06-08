@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><methodCall xmlns:tool="http://www.ibm.com/tivoli/netcool/webtop/tools/2.1">
+
+    <!-- The path in fileName will be esolved and fully qualified by the installer -->
+    <method methodName="cgi.registerCGI">
+        <cgi acl="*" fileName="/opt/IBM/netcool/gui/precision_gui/waapi/tools_and_menus/../cgi/launch-rootcause-event.cgi" name="launch-rootcause-event.cgi" useSmartPageCommands="true"/>
+    </method>
+
+    <method methodName="tool.createTool">
+        <tool:tool name="ShowRootCause">
+            <tool:access>
+                <tool:osfield/>
+                <tool:security/>
+            </tool:access>
+            <tool:cgiurl foreach="false" method="GET" target="RootCauseView" url="$(SERVER)cgi-bin/launch-rootcause-event.cgi" windowforeach="true">
+                <tool:fieldlist>
+                    <tool:field name="NmosCauseType"/>
+                    <tool:field name="NmosSerial"/>
+                    <tool:field name="ServerName"/>
+                    <tool:field name="ServerSerial"/>
+                </tool:fieldlist>
+            </tool:cgiurl>
+        </tool:tool>
+    </method>
+
+    <method methodName="menu.addItems">
+        <supermenu before="ShowSuppressedEvents" name="alerts">
+            <tool label="Show Root Cause" mnemonic="" name="ShowRootCause" shortcut=""/>
+        </supermenu>
+    </method>
+    
+</methodCall>

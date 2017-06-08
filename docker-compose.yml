@@ -1,20 +1,38 @@
 omnibus:
-    build: docker-omnibus-8.1
+    image: noi/omnibus
     ports: 
     - 4100:4100
     environment:
     - OBJSRV=AGG
+    - OBJSRV_PORT=4100
+    - OMNIDAT_EXTRA=
+    - DBINIT_EXTRA=
+
+db2:
+    image: noi/db2-tcr
+    privileged: true
+    ports:
+    - 50000:50000   
+    environment:
+    - DB2INSTANCE=db2inst1
+    - DB2INSTANCE_PORT=50000
+    - DB2INSTANCE_PASSWORD=db2inst1
 
 webgui:
-    build: docker-webgui-8.1
+    image: noi/jazz
     ports:
     - 16311:16311
     links:
-    - omnibus:agg
+    - omnibus:omnibus
+    - db2:db2
     environment:
-    - OBJECTSERVER_PRIMARY_HOST=agg
+    - OBJECTSERVER_PRIMARY_HOST=omnibus
     - OBJECTSERVER_PRIMARY_PORT=4100
     - OBJECTSERVER_PRIMARY_NAME=AGG
     - OBJECTSERVER_USER=root
     - OBJECTSERVER_PASSWORD=
+    - TCR_CS_DB_ADDRESS=db2:50000
+    - TCR_CS_DB_USER=db2inst1
+    - TCR_CS_DB_PASSWORD=db2inst1
+    - TCR_CS_DB_NAME=TCR3
 

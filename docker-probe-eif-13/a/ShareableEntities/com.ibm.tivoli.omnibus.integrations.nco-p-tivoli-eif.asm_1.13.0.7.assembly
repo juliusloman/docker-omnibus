@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadata version='0.0.4'?>
+<assembly id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.asm' version='1.13.0.7' seCount='2'>
+  <selector id='main'>
+    <requiredShareableEntity shareableId='com.ibm.tivoli.omnibus.installcontext' tolerance='[0.0.0,9999.0.0)' installContext='true'>
+      <requiredSelector selectorId='installContext'/>
+    </requiredShareableEntity>
+  </selector>
+  <includedShareableEntity id='com.ibm.tivoli.omnibus.integrations.nonnative-base.su' version='16.0.2' tolerance='[16.0.2,999999.0.0)'>
+    <includedSelector selectorId='main'>
+      <selectedBy id='main'/>
+    </includedSelector>
+  </includedShareableEntity>
+  <includedShareableEntity id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif.su' version='13.0.7' tolerance='[13.0.7,999999.0.0)'>
+    <includedSelector selectorId='main'>
+      <selectedBy id='main'/>
+    </includedSelector>
+  </includedShareableEntity>
+</assembly>

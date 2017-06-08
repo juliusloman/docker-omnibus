@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?repositoryDigest version='0.0.1'?>
+<repositoryDigest>
+  <repository>
+    <property name='LayoutPolicy' value='P1'/>
+    <property name='LayoutPolicyVersion' value='0.0.0.1'/>
+    <offering id='com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif' version='1.13.0.7'>
+      <information name='%offering.display.name' version='1.13.0.0'>
+        %offering.description
+      </information>
+      <property name='offering.type' value=''/>
+      <property name='default.profile' value=''/>
+      <property name='default.user.profile' value=''/>
+      <property name='vendor.name' value='%vendor.name.value'/>
+      <property name='offering.service.repositories' value=''/>
+      <property name='offering.RequiresAdmin' value='false'/>
+      <property name='supports.console.mode' value='true'/>
+      <property name='offering.SupportsGroupMode' value='true'/>
+      <property name='beta.compatible' value='true'/>
+      <property name='OfferingReference.LicensesKinds' value=''/>
+      <property name='OfferingReference.enablement.lum.id' value=''/>
+      <property name='OfferingReference.enablement.lum.version' value=''/>
+      <property name='supportedPlatforms' value='(|(&amp;(os=aix)(|(arch=ppc)(arch=ppc64)))(&amp;(os=solaris)(|(arch=sparc)(arch=sparc64)))(&amp;(os=hpux)(|(arch=ia64_32)(arch=ia64)))(&amp;(os=win32)(|(arch=x86)(arch=x86_64)))(&amp;(os=linux)(|(arch=x86)(arch=x86_64)))(&amp;(os=linux)(|(arch=s390)(arch=s390x))))'/>
+      <property name='import.profile.validation' value='true'/>
+      <dictionary lang='default'>
+        <property name='offering.display.name' value='Netcool/OMNIbus Probe nco-p-tivoli-eif'/>
+        <property name='offering.description' value='Netcool/OMNIbus Probe nco-p-tivoli-eif'/>
+        <property name='vendor.name.value' value='IBM'/>
+      </dictionary>
+      <file name='Offerings/com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif_1.13.0.7.jar' size='1461' MD5='6c3bcef30389d5a7c6c59e3f2cc92196'/>
+      <file name='Offerings/com.ibm.tivoli.omnibus.integrations.nco-p-tivoli-eif_1.13.0.7_SE.jar' size='4190' MD5='abc5975659eb309b8051fabee3d4255f'/>
+    </offering>
+  </repository>
+</repositoryDigest>
