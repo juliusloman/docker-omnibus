@@ -1,5 +1,5 @@
-NO_PROXY=195.28.103.20
-PROXY=195.28.100.45:8080
+NO_PROXY=
+PROXY=
 INSTALL_SOURCE=http://$(shell hostname -i):8000
 
 INSTALL_TCR_DB_CONN_URL="jdbc:db2://$(shell hostname -i):50000/TCR3"
@@ -38,6 +38,9 @@ jazz:
 	docker build --rm $(DOCKER_BUILD_ARGS_JAZZ) -t noi/jazz docker-jazz-1.1.3/
 	docker stop noi-install-omnibus noi-install-db2
 
+impact:
+	docker build $(DOCKER_BUILD_ARGS) -t noi/impact docker-impact-7.1
+
 test:
 
-all: 	omnibus db2 db-tcr jazz
+all: 	omnibus db2 db2-tcr jazz 

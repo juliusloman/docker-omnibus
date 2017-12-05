@@ -3,7 +3,7 @@ MAINTAINER Julius Loman <lomo@kyberia.net>
 
 ARG INSTALL_SOURCE="http://netcool.install:8000" 
 ARG INSTALL_FILE_CORE="OMNIbus-v8.1.0.5-Core.linux64.zip"
-ARG INSTALL_FILE_FP="8.1.0-TIV-NCOMNIbus-Linux-FP0011.zip"
+ARG INSTALL_FILE_FP="8.1.0-TIV-NCOMNIbus-Linux-FP0014.zip"
 ARG INSTALL_TMP="/tmp/install"
 
 ENV NCHOME="/opt/IBM/tivoli/netcool" OMNIHOME="/opt/IBM/tivoli/netcool/omnibus" OBJSRV="NCOMS" OBJSRV_PORT="4100"

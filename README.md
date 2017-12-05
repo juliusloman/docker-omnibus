@@ -19,7 +19,22 @@ directory with downloaded NOI images and run
 
 This starts up a HTTP server serving on port 8000 on all local interfaces.
 
-### DB2
+### Building by make file
+
+Edit Makefile and set three variables properly:
+  * NO\_PROXY to list of hostnames 
+  * PROXY to setup proxy server (if required)
+  * INSTALL\_SOURCE to setup host, where images are located, defaults to http://$(shell hostname -i):8000
+
+Run tie make file by executing
+  
+  make all
+
+This will build ObjectServer, JazzSM with TCR and WebGUI 8.1 and DB2 (for TCR).
+
+### Building individually
+
+#### DB2
 
 Build the DB2 image using (replace the <HTTP\_ADDRESS> with your actual IP
 address that is accessbile from docker internal network):
@@ -37,7 +52,7 @@ DB2 image expects following media (you can override the arguments by editing Doc
   * INSTALL\_FILE\_DB2\_FP="v10.5fp8\_linuxx64\_universal\_fixpack.tar.gz" (optional fixpack image)
   * INSTALL\_FILE\_DB2\_LIC="DB2\_ESE\_Restricted\_QS\_Act\_10.5.0.1.zip" (optional activation image)
 
-### Netcool/OMNIbus Object Server
+#### Netcool/OMNIbus Object Server
 
 Build the Object Server image by running:
 

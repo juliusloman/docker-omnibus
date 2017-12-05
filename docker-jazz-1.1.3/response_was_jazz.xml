@@ -4,11 +4,6 @@
     <variable name='sharedLocation' value='/opt/IBM/IBMIMShared'/>
   </variables>
   <server>
-    <repository location='/tmp/install/itnm-fp/repositories/disk1'/>
-    <repository location='/tmp/install/itnm/repositories/disk1'/>
-    <repository location='/tmp/install/webgui-fp/OMNIbusWebGUI_NOIExtensionsRepository/delta'/>
-    <repository location='/tmp/install/webgui-fp/OMNIbusWebGUIRepository/delta'/>
-    <repository location='/tmp/install/webgui/OMNIbusWebGUIRepository'/>
     <repository location='/tmp/install/jazz/im.linux.x86_64'/>
     <repository location='/tmp/install/jazz/JazzSMRepository/disk1'/>
     <repository location='/tmp/install/was/WASRepository/disk1'/>

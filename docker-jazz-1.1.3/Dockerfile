@@ -5,7 +5,7 @@ ARG INSTALL_SOURCE="http://netcool.install:8000"
 ARG INSTALL_FILE_WAS="WAS_V8.5.5.9_FOR_JSM_FOR_LINUX_ML.zip"
 ARG INSTALL_FILE_JAZZ="JAZZ_FOR_SM_1.1.3.0_FOR_LNX.zip"
 ARG INSTALL_FILE_WEBGUI="OMNIbus-v8.1-WebGUI.linux64.zip"
-ARG INSTALL_FILE_WEBGUI_FP="OMNIbus-v8.1.0-WebGUI-FP9-IM-Extensions-linux64-UpdatePack.zip"
+ARG INSTALL_FILE_WEBGUI_FP="OMNIbus-v8.1.0-WebGUI-FP11-IM-Extensions-linux64-UpdatePack.zip"
 ARG INSTALL_FILE_TCR="ITCR_3.1.3.0_FOR_LINUX.tar.gz"
 ARG INSTALL_FILE_ITNM="ITNP_IP_LIN.zip"
 ARG INSTALL_FILE_ITNM_FP="4.2.0-TIV-ITNMIP-Linux-FP0002.zip"
@@ -95,8 +95,8 @@ RUN cd /tmp/install && \
     curl -O "$INSTALL_SOURCE/$INSTALL_FILE_WEBGUI"    && unzip -q -d "$INSTALL_TMP/webgui" "$INSTALL_FILE_WEBGUI" && \
     curl -O "$INSTALL_SOURCE/$INSTALL_FILE_WEBGUI_FP" && unzip -q -d "$INSTALL_TMP/webgui-fp" "$INSTALL_FILE_WEBGUI_FP" && \
     curl "$INSTALL_SOURCE/$INSTALL_FILE_TCR" | tar xzv -C "$INSTALL_TMP/tcr" && \
-    curl -O "$INSTALL_SOURCE/$INSTALL_FILE_ITNM"      && unzip -q -d "$INSTALL_TMP/itnm" "$INSTALL_FILE_ITNM" && \
-    curl -O "$INSTALL_SOURCE/$INSTALL_FILE_ITNM_FP"   && unzip -q -d "$INSTALL_TMP/itnm-fp" "$INSTALL_FILE_ITNM_FP" && \
+#    curl -O "$INSTALL_SOURCE/$INSTALL_FILE_ITNM"      && unzip -q -d "$INSTALL_TMP/itnm" "$INSTALL_FILE_ITNM" && \
+#    curl -O "$INSTALL_SOURCE/$INSTALL_FILE_ITNM_FP"   && unzip -q -d "$INSTALL_TMP/itnm-fp" "$INSTALL_FILE_ITNM_FP" && \
     rm -rf "$INSTALL_FILE_WAS" "$INSTALL_FILE_JAZZ" "$INSTALL_FILE_WEBGUI" "$INSTALL_FILE_WEBGUI_FP" "$INSTALL_FILE_ITNM" "$INSTALL_FILE_ITNM_FP"  && \
 # Prepary variables
     . /docker-entrypoint-functions.sh && \
@@ -124,9 +124,9 @@ RUN cd /tmp/install && \
     cd "$INSTALL_TMP/jazz/im.linux.x86_64" && ./userinstc --launcher.ini user-silent-install.ini  -acceptLicense && \
 # Backup and configure temparary OMNIbus Connection
     backupNCWDataSources && stopJazzSM && configureNCWDataSources && startJazzSM && \
-# Install ITNM GUI
-    cp "$INSTALL_TMP/response_itnm.xml" "$INSTALL_TMP/jazz/im.linux.x86_64/install.xml" && \
-    cd "$INSTALL_TMP/jazz/im.linux.x86_64" && ./userinstc --launcher.ini user-silent-install.ini  -acceptLicense && \
+## Install ITNM GUI
+#    cp "$INSTALL_TMP/response_itnm.xml" "$INSTALL_TMP/jazz/im.linux.x86_64/install.xml" && \
+#    cd "$INSTALL_TMP/jazz/im.linux.x86_64" && ./userinstc --launcher.ini user-silent-install.ini  -acceptLicense && \
 # Stop and cleanup
     stopJazzSM && restoreNCWDataSources && \
     rm -rf /tmp/install /opt/IBM/IBMIMShared /home/netcool/var
